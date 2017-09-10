@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dojo Survey form</title>
+        <meta charset="UTF-8">
+        <!-- <link rel="stylesheet" href="../static/RegistrationForm.css" type="text/css"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='RegistrationForm.css') }}">
+    </head>
+    <body>
+        <div id="msgarea">
+            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+            {% if errors %}
+            <div class="error">
+                {%- for msg in errors %}
+                <h3>{{ msg }}</h3>
+                {% endfor -%}
+            </div>
+            {% endif %}
+            {% endwith %}
+            {% with errors = get_flashed_messages(category_filter=["success"]) %}
+            {% if errors %}
+            <div class="success">
+                {%- for msg in errors %}
+                <h3>{{ msg }}</h3>
+                {% endfor -%}
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+        <form action='/verify' method='post'>
+            <h2>Registration Form:</h2>
+            <p>First Name: <input type='text' name='fname'></p>
+            <p>Last Name: <input type='text' name='lname'></p>
+            <p>Email: <input type='text' name='email'></p>
+            <p>Birth-date: <input type="date" name='bdate'/></p>
+            <p>Password: <input type='text' name='pword'></p>
+            <p>Confirm password: <input type='text' name='cpword'></p>
+            <input id="button" type='submit' value='Submit'>
+        </form>
+    </body>
+</html>
